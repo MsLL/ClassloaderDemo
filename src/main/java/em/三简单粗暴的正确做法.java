@@ -17,7 +17,7 @@ public class 三简单粗暴的正确做法 {
 
         ClassLoader loader1 = new MyCL(baseLibDir,"A.jar");
         ClassLoader loader2 = new MyCL(baseLibDir,"B.jar");
-
+        //NOTE-UPUP 2020/5/17 下午11:25 : 类A用loader1加载，类B用loader2加载。这样再各自触发类C加载的时候，就已经隔离了。
         Class clazzA = loader1.loadClass("com.company.A");
         Class clazzB = loader2.loadClass("com.company.B");
 

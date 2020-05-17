@@ -38,6 +38,7 @@ public class ReCL extends ClassLoader {
                 e.printStackTrace();
             }
         }
+        //NOTE-UPUP 2020/5/18 上午12:22 : 对于A和B类，各自用自己的loader加载，做到A，B隔离。----to tomcat隔离？666
         if(name.equals("com.company.A")){
             String baseLibDir = System.getProperty("user.dir") + File.separator + "lib";
             try {
@@ -58,6 +59,8 @@ public class ReCL extends ClassLoader {
                 e.printStackTrace();
             }
         }
+        //NOTE-UPUP 2020/5/18 上午12:33 : A,B里面还要加载除类C额外的类的话(包括rt下面的类)，这里估计有点问题，ReCL继承的是ClassLoader,但是ClassLoader#loadClass#findClass默认是直接抛异常的
+        // ，这里可以再全局维护一个已有的ClassLoader子类示例，用来非A，B类的加载，如：AppClassLoader ---666
         return super.loadClass(name);
     }
     //返回类的字节码

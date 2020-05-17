@@ -19,8 +19,10 @@ public class 四比较牛逼的方法 {
         flag = false;
     }
     public static void main(String[] args) throws Exception{
+        //NOTE-UPUP 2020/5/18 上午12:12 : 检查标志，避免死递归  reRun里面会用自己的loader重新加载Main类，跑main---666
         if(flag) ReRun.reRun(System.getProperty("user.dir")+ File.separator +"target"+ File.separator +"classes",四比较牛逼的方法.class.getName(),args);
 
+        //NOTE-UPUP 2020/5/18 上午12:17 : 放在else里面 而不是在ReRun.reRun里面调System.exit是不是优雅一些？--
         new A().run();
         new B().run();
     }
